@@ -1,4 +1,4 @@
-package com.individual.preonboardingbackend.security.jwt;
+package com.individual.preonboardingbackend.security;
 
 import com.individual.preonboardingbackend.user.model.UserRole;
 import io.jsonwebtoken.*;
