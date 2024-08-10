@@ -1,4 +1,4 @@
-package com.individual.preonboardingbackend.security;
+package com.individual.preonboardingbackend.security.jwt;
 
 import com.individual.preonboardingbackend.user.model.User;
 import com.individual.preonboardingbackend.user.repository.UserRepository;
@@ -7,12 +7,11 @@ import jakarta.servlet.*;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.annotation.Order;
-import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
 import java.io.IOException;
 @Slf4j
-@Component
+//@Component
 @Order(2)
 public class AuthFilter implements Filter {
     private final UserRepository userRepository;
@@ -34,7 +33,7 @@ public class AuthFilter implements Filter {
         String url = httpServletRequest.getRequestURI();
 
         if (StringUtils.hasText(url) &&
-                (url.startsWith("/api/v1/user")) // 인증 제외 url
+                (url.startsWith("/api/v1/user/**")) // 인증 제외 url
         ) {
             log.info("인증처리를 하지 않는 URL{}", url);
             filterChain.doFilter(servletRequest, servletResponse);
@@ -47,7 +46,7 @@ public class AuthFilter implements Filter {
                 String token = jwtUtil.substringToken(tokenValue);
 
                 // 토큰 검증
-                if (!jwtUtil.validateToken(token)) {
+                if (jwtUtil.validateToken(token)) {
                     throw new IllegalArgumentException("Token Error");
                 }
 

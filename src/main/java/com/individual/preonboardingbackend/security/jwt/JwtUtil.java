@@ -1,4 +1,4 @@
-package com.individual.preonboardingbackend.security;
+package com.individual.preonboardingbackend.security.jwt;
 
 import com.individual.preonboardingbackend.user.model.UserRole;
 import io.jsonwebtoken.*;
@@ -83,7 +83,7 @@ public class JwtUtil {
     public boolean validateToken(String token){
         try {
             Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token);
-            return true;
+            return false;
         }catch (SecurityException | MalformedJwtException | SignatureException e){
             logger.error("Invalid token, 유효하지 않은 JWT 서명입니다");
         }catch (ExpiredJwtException e){
@@ -91,7 +91,7 @@ public class JwtUtil {
         }catch (IllegalArgumentException e){
             logger.error("JWT claims is empty, 잘못된 JWT 토큰입니다");
         }
-        return false;
+        return true;
     }
 
     // jwt 에서 사용자 정보 가져오기
