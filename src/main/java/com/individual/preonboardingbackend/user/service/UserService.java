@@ -1,10 +1,13 @@
 package com.individual.preonboardingbackend.user.service;
 
-import com.individual.preonboardingbackend.user.dto.UserRequest;
-import com.individual.preonboardingbackend.user.dto.UserResponse;
+import com.individual.preonboardingbackend.user.dto.request.UserLoginRequest;
+import com.individual.preonboardingbackend.user.dto.response.UserLoginResponse;
+import com.individual.preonboardingbackend.user.dto.request.UserSignUpRequest;
+import com.individual.preonboardingbackend.user.dto.response.UserSignUpResponse;
+import jakarta.servlet.http.HttpServletResponse;
 
 
 public interface UserService {
-    UserResponse signUp(UserRequest userRequest);
-    UserResponse login(UserRequest userRequest);
+    UserSignUpResponse signUp(UserSignUpRequest userSignUpRequest);
+    UserLoginResponse login(UserLoginRequest userLoginRequest, HttpServletResponse response);
 }

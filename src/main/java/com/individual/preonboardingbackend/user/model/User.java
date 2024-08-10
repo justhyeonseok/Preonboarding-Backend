@@ -9,23 +9,23 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Getter
 @AllArgsConstructor
-@Table(name = "user")
+@Table(name = "users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name="nick_name")
+    @Column(name="nick_name", nullable = false)
     private String nickname;
 
-    @Column(name = "user_name")
+    @Column(name = "user_name", nullable = false)
     private String username;
 
-    @Column(name="password")
+    @Column(name="password", nullable = false)
     private String password;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "role")
+    @Column(name = "role", nullable = false)
     private UserRole role;
     public User(String nickname, String username, String password, UserRole role) {
         this.nickname = nickname;
