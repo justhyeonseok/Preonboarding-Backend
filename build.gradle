@@ -46,6 +46,8 @@ dependencies {
 	implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.6.0")
 	// Valid
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
+	testImplementation 'org.mockito:mockito-core'
+	testImplementation 'org.mockito:mockito-junit-jupiter'
 
 }
 
